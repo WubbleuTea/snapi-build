@@ -1,0 +1,26 @@
+{
+  "name": "snapi-build",
+  "version": "1.0.0",
+  "description": "The backend for a social network using a NoSQL database.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joshuaweisbrodtorres/snapi-build.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/joshuaweisbrodtorres/snapi-build/issues"
+  },
+  "homepage": "https://github.com/joshuaweisbrodtorres/snapi-build#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "moment": "^2.28.0",
+    "mongoose": "^5.10.5"
+  }
+}
