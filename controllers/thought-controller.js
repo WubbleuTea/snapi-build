@@ -38,12 +38,12 @@ const thoughtController = {
     });
   },
   //add thought to user
-  addThought({ params, body }, res) {
+  addThought({ body }, res) {
     console.log(body);
     Thought.create(body)
       .then(({ _id }) => {
         return User.findOneAndUpdate(
-          { _id: params.userId },
+          { _id: body.userId },
           { $push: { thoughts: _id } },
           { new: true}
         );
@@ -72,14 +72,14 @@ const thoughtController = {
 
   // remove thought 
   removeThought({ params }, res) {
-    Thought.findOneAndDelete({ _id: params.thoughtId })
+    Thought.findOneAndDelete({ _id: params.id })
       .then(deletedThought => {
         if (!deletedThought) {
           return res.status(404).json({ message: 'No thought with this id' });
         }
         return User.findOneAndUpdate(
-          { _id: params.userId },
-          { $pull: { thoughts: params.thoughtId } },
+          { _id: deletedThought.userId },
+          { $pull: { thoughts: params.id } },
           { new: true}
         );
       })
@@ -99,14 +99,15 @@ const thoughtController = {
       { $push: { reactions: body } },
       { new: true, runValidators: true }
     )
-      .then(dbThoughtData => {
-        if (!dbThoughtData) {
-          res.status(404).json({ message: 'No thought found with this id!' });
-          return;
-        }
-        res.json(dbThoughtData);
-      })
-      .catch(err => res.json(err));
+    .select('-__v')
+    .then(dbThoughtData => {
+      if (!dbThoughtData) {
+        res.status(404).json({ message: 'No thought found with this id!' });
+        return;
+      }
+      res.json(dbThoughtData);
+    })
+    .catch(err => res.json(err));
   },
   // remove reaction
   removeReaction({ params }, res) {
@@ -115,6 +116,7 @@ const thoughtController = {
       { $pull: { reactions: { reactionId: params.reactionId } } },
       { new: true }
     )
+    .select('-__v')
     .then(dbThoughtData => {
       if (!dbThoughtData) {
         res.status(404).json({ message: 'No thought found with this id!' });
