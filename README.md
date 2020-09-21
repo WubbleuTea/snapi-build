@@ -26,8 +26,7 @@ Open up insomnia and create routes.
 
 Creates (this is a static image).  
 ![Displays a quality employee page.](/public/assets/images/snapi.png)  
-
-Video Demo Youtube (if viewing online, the image is a link)   
+  
 [Video Demo: Youtube](https://youtu.be/3jQrbnJYc8s)  
  
 
