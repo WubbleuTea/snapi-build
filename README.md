@@ -24,7 +24,6 @@ To start open up the terminal and run :
 
 Open up insomnia and create routes.
 
-Creates (this is a static image).  
 ![Displays a quality employee page.](/public/assets/images/snapi.png)  
   
 [Video Demo: Youtube](https://youtu.be/3jQrbnJYc8s)  
